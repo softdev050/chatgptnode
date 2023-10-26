@@ -65,12 +65,12 @@ async function runCompletion(str, i) {
             resfromBot.push(item);
             if (oldkey != oncequery) {
                 oldkey = oncequery;
-                // console.log(oncequery);
+                console.log(oncequery);
             }
-            // console.log(str[h].value);
+            console.log(str[h].value);
         }
         result = result.concat(resfromBot);
-        // console.log(i);
+        console.log(i);
     } catch (error) {
         console.log("Network error!");
     }
@@ -117,12 +117,12 @@ const uncateliminate = createCsvWriter({
 const writeresult = createCsvWriter({
     path: 'result.csv',
     header: [
-        { id:'a', title: 'Activity(app or site)' },
-        { id:'b', title: 'ActivityType(0 - app, 1 - website)' },
-        { id:'c', title: 'CategoryID' },
-        { id:'d', title: 'Parent_name' },
-        { id:'e', title: 'Category_name' },
-        { id:'f', title: 'Full_name' }
+        { id: 'a', title: 'Activity(app or site)' },
+        { id: 'b', title: 'ActivityType(0 - app, 1 - website)' },
+        { id: 'c', title: 'CategoryID' },
+        { id: 'd', title: 'Parent_name' },
+        { id: 'e', title: 'Category_name' },
+        { id: 'f', title: 'Full_name' }
     ]
 });
 const versioncompare = (oper1, oper2) => {
@@ -234,7 +234,7 @@ const dupelementary_new = (arr) => {
     let version_arr = [];
     let versions;
     let elilist = [];
-    let i =0;
+    let i = 0;
     for (i = 0; i < arr.length; i++) {
         let tmp = arr[i].a;
         if (tmp != undefined) {
@@ -274,16 +274,16 @@ const dupelementary_new = (arr) => {
                     }
                 }
 
-                    let cur = 0;
-                    let versionmas = tmp.indexOf("release");
-                    let searchstart = tmp.length - 1;
-                    if (versionmas > 0) searchstart = versionmas - 1;
-                    for (j = searchstart; j >= 0; j--) {
-                        if (!(parseInt(tmp[j]) >= 0 || tmp[j] == '.' || tmp[j] == ' ' || tmp[j] == '-' || tmp[j] == '?' || tmp[j] == 'V' || tmp[j] == 'v' || tmp[j] == 'u')) { cur = j; break; }
-                    }
-                    arr[i].a = tmp.substring(0, cur + 1);
-                    // console.log(arr[i].a);
-                    
+                let cur = 0;
+                let versionmas = tmp.indexOf("release");
+                let searchstart = tmp.length - 1;
+                if (versionmas > 0) searchstart = versionmas - 1;
+                for (j = searchstart; j >= 0; j--) {
+                    if (!(parseInt(tmp[j]) >= 0 || tmp[j] == '.' || tmp[j] == ' ' || tmp[j] == '-' || tmp[j] == '?' || tmp[j] == 'V' || tmp[j] == 'v' || tmp[j] == 'u')) { cur = j; break; }
+                }
+                arr[i].a = tmp.substring(0, cur + 1);
+                // console.log(arr[i].a);
+
             }
         }
     }
@@ -295,8 +295,8 @@ const dupelementary_new = (arr) => {
     }
     // arr.unshift(tmp);
     const arr_new = [];
-    for(i = 0; i<arr.length ; i++){
-        if(arr[i].a != undefined){
+    for (i = 0; i < arr.length; i++) {
+        if (arr[i].a != undefined) {
             arr_new.push(arr[i]);
         }
     }
@@ -304,62 +304,62 @@ const dupelementary_new = (arr) => {
     return arr_new;
 }
 const integratedlist = (newout_list, cate_list) => {
-    let fname = '', type = '', cateid='', paname = '', catename = '';
-    const catelist = [], resultdata=[];
+    let fname = '', type = '', cateid = '', paname = '', catename = '';
+    const catelist = [], resultdata = [];
     // const row = {a:'', b:'', c:'', d:'', e:'', f:''};
-    for(i = 0; i<newout_list.length; i++){
+    for (i = 0; i < newout_list.length; i++) {
         let tmp = newout_list[i].result;
         // let tmp = "Utilities & Threats - Internet Utilities";
-        if(tmp != undefined){
+        if (tmp != undefined) {
             tmp = tmp.trim();
             let cur = 0;
             let versionmas = tmp.indexOf("release");
             let searchstart = tmp.length;
-            if(versionmas>0)searchstart=versionmas-1;
-            for (j = searchstart-1; j >= 0; j--) {
-                if (!(parseInt(tmp[j]) >= 0 || tmp[j] == '.'|| tmp[j] == ','|| tmp[j] == ' '|| tmp[j] == '-'|| tmp[j] == '?'|| tmp[j] == 'V'|| tmp[j] == 'v'|| tmp[j] == 'u')) { cur = j; break; }
+            if (versionmas > 0) searchstart = versionmas - 1;
+            for (j = searchstart - 1; j >= 0; j--) {
+                if (!(parseInt(tmp[j]) >= 0 || tmp[j] == '.' || tmp[j] == ',' || tmp[j] == ' ' || tmp[j] == '-' || tmp[j] == '?' || tmp[j] == 'V' || tmp[j] == 'v' || tmp[j] == 'u')) { cur = j; break; }
             }
-            let title = tmp.substring(0, cur+1);
+            let title = tmp.substring(0, cur + 1);
             str = title.trim();
-            let version = tmp.substring(cur+2, tmp.length);
+            let version = tmp.substring(cur + 2, tmp.length);
             versions = version.replace(/[a-z,_,-,?]/g, '');
             // console.log(title);
             // console.log(version);
             let cate_stautus = 0;
-            for(j=0; j<cate_list.length; j++){
-                if(cate_list[j].full_name == tmp){
+            for (j = 0; j < cate_list.length; j++) {
+                if (cate_list[j].full_name == tmp) {
                     cate_stautus = 1;
                     break;
                 }
             }
-            if(cate_stautus || tmp == 'None'){
+            if (cate_stautus || tmp == 'None') {
                 // console.log('category');
-                if(catelist.indexOf(tmp) == -1){
+                if (catelist.indexOf(tmp) == -1) {
                     catelist.push(tmp);
                     fname = tmp;
                     // console.log(fname);
                 }
-            }else {
-            
-                if(tmp != title){
+            } else {
+
+                if (tmp != title) {
                     // console.log('app');
                     type = '0';
-                }else{
+                } else {
                     // console.log('site');
                     type = '1';
                 }
-                if(fname == 'None'){
+                if (fname == 'None') {
                     catelist.push(tmp);
                     title = tmp;
                     cateid = '2';
                     paname = 'Uncategorized';
                     catename = 'Uncategorized';
                     fname = 'Uncategorized - Uncategorized';
-                }else{
-                    let pos = fname.indexOf('-');                                                                                                                                                                                                                                                                                                                                                       
-                    paname = fname.substring(0, pos-1);
+                } else {
+                    let pos = fname.indexOf('-');
+                    paname = fname.substring(0, pos - 1);
                     paname = paname.trim();
-                    catename = fname.substring(pos+1, fname.length);
+                    catename = fname.substring(pos + 1, fname.length);
                     catename = catename.trim();
                     // if(i==60)console.log(paname);
                     // let id = cate_list.indexOf(fname);
@@ -374,22 +374,22 @@ const integratedlist = (newout_list, cate_list) => {
                     // let cateid = '1';
                     // console.log(cateid);
                     cateid = '';
-                    for(j=0; j<cate_list.length; j++){
-                        if(cate_list[j].full_name == fname){
+                    for (j = 0; j < cate_list.length; j++) {
+                        if (cate_list[j].full_name == fname) {
                             cateid = cate_list[j].id;
                             break;
                         }
                     }
                 }
                 // console.log(title);
-                
-                const row={
-                    a:tmp,
-                    b:type,
-                    c:cateid,
-                    d:paname,
-                    e:catename,
-                    f:fname
+
+                const row = {
+                    a: tmp,
+                    b: type,
+                    c: cateid,
+                    d: paname,
+                    e: catename,
+                    f: fname
                 }
                 // if(i == 50) console.log(row);
                 resultdata.push(row);
