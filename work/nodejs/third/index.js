@@ -67,12 +67,12 @@ async function runCompletion(str, i) {
                 oldkey = oncequery;
                 console.log(oncequery);
             }
-            console.log(str[h].value);
+            // console.log(str[h].value);
         }
         result = result.concat(resfromBot);
         console.log(i);
     } catch (error) {
-        console.log("Network error!");
+        // console.log("Network error!");
     }
 
 }
