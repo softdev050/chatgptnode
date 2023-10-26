@@ -4,9 +4,9 @@ const createCsvWriter = require('csv-writer').createObjectCsvWriter;
 const mycsvWriter = require('csv-write-stream');
 require('dotenv').config()
 const csv = require('csv-parser');
-// const fs = require('fs');
-// const { version, type } = require("os");
-// const fs_write = require('fs').promises;
+const fs = require('fs');
+const { version, type } = require("os");
+const fs_write = require('fs').promises;
 const getsiteappList = (inputfile) => {
     let tmp = []
     return new Promise((resolve, reject) => {
